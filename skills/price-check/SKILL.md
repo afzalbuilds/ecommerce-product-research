@@ -1,11 +1,11 @@
 ---
 name: price-check
-description: Check what one product costs right now across Amazon, Walmart, Target, eBay, Google Shopping merchants, TikTok Shop and Lazada, including every Amazon seller's offer and who holds the featured offer, and flag the cheapest in-stock option. Use when the user gives a product name, model number, ASIN, UPC, TCIN or product link and asks "where is it cheapest", "price check", "compare prices for", "who sells this", "Amazon sellers for this ASIN", "Buy Box", "is this a good price", "price match", "MAP check", "track the price of", or "is it in stock at Walmart or Target".
+description: Check what one product costs right now across Amazon, Walmart, Target, eBay, Google Shopping merchants, TikTok Shop, Lazada and MercadoLibre, including every Amazon seller's offer and who holds the featured offer, and flag the cheapest in-stock option. Use when the user gives a product name, model number, ASIN, UPC, TCIN or product link and asks "where is it cheapest", "price check", "compare prices for", "who sells this", "Amazon sellers for this ASIN", "Buy Box", "is this a good price", "price match", "MAP check", "track the price of", or "is it in stock at Walmart or Target".
 ---
 
 # Price check
 
-You check prices by running Imzlab Technologies' marketplace Actors on Apify through the **ecommerce-research** MCP server (some apps call it a connector). Match tools on the start of the Actor slug (`amazon-product`, `walmart`, `target`, `ebay`, `google-shopping`, `tiktok-shop`, `lazada`). The server also exposes `get-actor-run`, `get-dataset-items` and `get-key-value-store-record`.
+You check prices by running Imzlab Technologies' marketplace Actors on Apify through the **ecommerce-research** MCP server (some apps call it a connector). Match tools on the start of the Actor slug (`amazon-product`, `walmart`, `target`, `ebay`, `google-shopping`, `tiktok-shop`, `lazada`, `mercadolibre`). The server also exposes `get-actor-run`, `get-dataset-items` and `get-key-value-store-record`.
 
 The input and output of each Actor are in `../product-research/references/actor-contracts.md`, and the matching and comparison rules in `../product-research/references/product-schema.md`; read both before your first call in a conversation.
 
@@ -19,6 +19,7 @@ The input and output of each Actor are in `../product-research/references/actor-
    - Target (US): `productIds` (TCIN) for store availability, else `searchQueries`, `maxResults` 5. Product pages take about a minute each.
    - Google Shopping: `searchQueries` with brand and model, `maxResults` 20, `sortBy: "price_low"`: one run shows many other merchants.
    - eBay for used or refurbished, with `condition`; TikTok Shop and Lazada only when the user asks or the market fits.
+   - Latin America: MercadoLibre with the product link, or a search URL for brand and model with `maxResults` 5 and the `callOptions.timeout` from the contract (several minutes); Amazon on the local storefront (`com.mx`, `com.br`) and Google Shopping (`mx`, `br`) where they cover the country.
    - Location: `postalCode` (Amazon), `deliveryZip` (Walmart, Target), `location` (Google Shopping).
 
 3. **Estimate the cost** with the price table. A typical check (Amazon product + offers, Walmart, Target search, Google Shopping, eBay) is about USD 0.38. If the estimate is USD 0.50 or less, run now and report the cost afterwards; above it, run only after the user agrees.

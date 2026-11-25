@@ -1,6 +1,6 @@
 # E-commerce Product & Price Research
 
-This extension researches products, prices, competitor stores and suppliers on Amazon, Walmart, Target, eBay, Google Shopping, TikTok Shop, Lazada, Shopify stores, AliExpress and Alibaba, with Imzlab Technologies' Actors on Apify, through the `ecommerce-research` MCP server. The full instructions live in the extension's skills. Activate the matching skill before you call any of the server's tools:
+This extension researches products, prices, competitor stores and suppliers on Amazon, Walmart, Target, eBay, Google Shopping, TikTok Shop, Lazada, MercadoLibre, Shopify stores, AliExpress and Alibaba, with Imzlab Technologies' Actors on Apify, through the `ecommerce-research` MCP server. The full instructions live in the extension's skills. Activate the matching skill before you call any of the server's tools:
 
 - `product-research`: products for a keyword or category across marketplaces, and Amazon Best Sellers.
 - `price-check`: one product's current price everywhere, with Amazon offers.

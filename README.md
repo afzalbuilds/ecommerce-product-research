@@ -1,6 +1,6 @@
 # E-commerce Product & Price Research for Claude and other AI agents
 
-Research products, prices, competitor stores and suppliers without leaving Claude. Ask about a product, a keyword, a store or a supplier and the plugin reads **Amazon (23 storefronts, including every seller's offer and the Best Sellers lists), Walmart, Target, eBay, Google Shopping, TikTok Shop, Lazada and any Shopify store**, finds suppliers on **Alibaba and AliExpress**, and returns one comparable table with prices, ratings, sales signals, sellers and links.
+Research products, prices, competitor stores and suppliers without leaving Claude. Ask about a product, a keyword, a store or a supplier and the plugin reads **Amazon (23 storefronts, including every seller's offer and the Best Sellers lists), Walmart, Target, eBay, Google Shopping, TikTok Shop, Lazada, MercadoLibre and any Shopify store**, finds suppliers on **Alibaba and AliExpress**, and returns one comparable table with prices, ratings, sales signals, sellers and links.
 
 It works in Claude chat, in Cowork and in Claude Code, and the same repository also installs as a native plugin in OpenAI Codex, Gemini CLI, GitHub Copilot, Grok, Cursor, Hermes Agent and OpenCode, with the skills usable in many more agents (see [Other AI agents](#other-ai-agents-codex-gemini-cli-copilot-and-more)). There are no developer accounts to set up and nothing to configure. Lookups run as pay-per-result Apify Actors on your own Apify account, and you only pay for rows that come back.
 
@@ -14,6 +14,7 @@ It works in Claude chat, in Cowork and in Claude Code, and the same repository a
 - "What are the best sellers in this TikTok Shop store?"
 - "Find Alibaba suppliers for silicone kitchen utensil sets: MOQ, price tiers, lead times. What margin is left at Amazon prices?"
 - "USB-C chargers on Lazada Singapore and Malaysia: price range and top brands."
+- "Espresso machines on MercadoLibre Mexico: price range, condition and the top sellers."
 - "Check these 50 products every week and tell me which prices dropped."
 - "What will a price check of 200 ASINs cost?"
 
@@ -31,6 +32,7 @@ Claude picks the right marketplaces, estimates the cost, runs them, waits for th
 | Any Shopify store's catalog | Shopify Store Scraper | up to 10,000 products per store | prices, discounts, variants, stock, launch dates, collections, installed apps, public contact details, review-based sales estimate |
 | TikTok Shop (US) | TikTok Shop Product Scraper | up to 500 products | price, units sold, rating, store followers and totals, best sellers per store |
 | Lazada (Singapore, Malaysia, Thailand, Philippines, Indonesia, Vietnam) | Lazada Products Scraper | up to 1,000 rows | price, discount, rating, units sold, seller, LazMall flag |
+| MercadoLibre (Mexico, Argentina, Colombia, Chile, Peru, Uruguay and the other Spanish-language MercadoLibre sites; not Brazil) | MercadoLibre Product & Seller Scraper | up to 200 products (20 on free Apify plans) | current price, condition, stock, specifications, seller name, reputation and total sales |
 | AliExpress (dropshipping prices) | AliExpress Products, Reviews & Sellers | up to 500 products | price, discount, units sold, reviews, store |
 | Alibaba (wholesale suppliers) | Alibaba Products & Suppliers Scraper | up to 15,000 rows | price range and tiers, minimum order, lead times, certifications, supplier country, years, verification, response time |
 
@@ -39,7 +41,7 @@ Not included: checkout, buying or listing on any marketplace, seller-central or 
 ## How to set it up
 
 1. Install the plugin from the Claude directory (claude.ai > Customize > Plugins) or in Claude Code with `claude plugin install ecommerce-product-research@imzlab-ecommerce-research` after adding the marketplace `afzalbuilds/ecommerce-product-research`.
-2. Open the plugin's **Connectors** tab and connect the **ecommerce-research** server. It is Apify's official MCP server (`mcp.apify.com`) limited to the ten marketplace Actors, so a browser window opens for you to sign in or create a free Apify account. Free accounts include monthly usage credit, so you can try it without adding a card. Claude may note that the server is not a separately registered directory connector; that is expected, because it is Apify's hosted server rather than one Imzlab runs.
+2. Open the plugin's **Connectors** tab and connect the **ecommerce-research** server. It is Apify's official MCP server (`mcp.apify.com`) limited to the eleven marketplace Actors, so a browser window opens for you to sign in or create a free Apify account. Free accounts include monthly usage credit, so you can try it without adding a card. Claude may note that the server is not a separately registered directory connector; that is expected, because it is Apify's hosted server rather than one Imzlab runs.
 3. Ask Claude.
 
 In Claude Code, `/mcp` shows the connection state, and `/ecommerce-product-research:price-check De'Longhi EC685` runs a lookup directly.
@@ -134,10 +136,10 @@ hermes plugins enable ecommerce-product-research
 The package declares the ecommerce-research server, but Hermes signs in to a remote server only when your own configuration asks for it. Register the server under the same name with browser sign-in, so Hermes uses your Apify account for it. Run this in a terminal, not from a script, because Hermes starts the sign-in only when it can talk to you:
 
 ```bash
-hermes mcp add ecommerce-research --auth oauth --url "https://mcp.apify.com/?tools=muhammadafzal/amazon-product-offers-bestsellers-scraper,muhammadafzal/walmart-price-checker-scraper,muhammadafzal/target-price-checker-scraper,muhammadafzal/ebay-scraper,muhammadafzal/google-shopping-scraper,muhammadafzal/shopify-store-scraper,muhammadafzal/tiktok-shop-product-scraper,muhammadafzal/lazada-products-scraper,muhammadafzal/aliexpress-products-reviews-sellers,muhammadafzal/alibaba-products-suppliers-scraper"
+hermes mcp add ecommerce-research --auth oauth --url "https://mcp.apify.com/?tools=muhammadafzal/amazon-product-offers-bestsellers-scraper,muhammadafzal/walmart-price-checker-scraper,muhammadafzal/target-price-checker-scraper,muhammadafzal/ebay-scraper,muhammadafzal/google-shopping-scraper,muhammadafzal/shopify-store-scraper,muhammadafzal/tiktok-shop-product-scraper,muhammadafzal/lazada-products-scraper,muhammadafzal/mercadolibre-product-seller-scraper,muhammadafzal/aliexpress-products-reviews-sellers,muhammadafzal/alibaba-products-suppliers-scraper"
 ```
 
-Hermes opens Apify's consent page in your browser. After you allow access it lists the server's tools (the ten Actors plus the run, dataset and record tools); press Enter to enable them all. `hermes mcp test ecommerce-research` confirms the connection, and `hermes mcp login ecommerce-research` signs in again later if the access is ever revoked.
+Hermes opens Apify's consent page in your browser. After you allow access it lists the server's tools (the eleven Actors plus the run, dataset and record tools); press Enter to enable them all. `hermes mcp test ecommerce-research` confirms the connection, and `hermes mcp login ecommerce-research` signs in again later if the access is ever revoked.
 
 Every request is a paid Actor run on your Apify account, so the package marks the server `untrusted`: Hermes asks before each call and refuses them in unattended runs. Your own server entry replaces the package's entry, including that setting; add `trust: untrusted` under `mcp_servers.ecommerce-research` in `~/.hermes/config.yaml` to keep the prompts.
 
@@ -152,7 +154,7 @@ npx skills add afzalbuilds/ecommerce-product-research -a opencode -g
 ```
 
 ```bash
-opencode mcp add ecommerce-research --url "https://mcp.apify.com/?tools=muhammadafzal/amazon-product-offers-bestsellers-scraper,muhammadafzal/walmart-price-checker-scraper,muhammadafzal/target-price-checker-scraper,muhammadafzal/ebay-scraper,muhammadafzal/google-shopping-scraper,muhammadafzal/shopify-store-scraper,muhammadafzal/tiktok-shop-product-scraper,muhammadafzal/lazada-products-scraper,muhammadafzal/aliexpress-products-reviews-sellers,muhammadafzal/alibaba-products-suppliers-scraper"
+opencode mcp add ecommerce-research --url "https://mcp.apify.com/?tools=muhammadafzal/amazon-product-offers-bestsellers-scraper,muhammadafzal/walmart-price-checker-scraper,muhammadafzal/target-price-checker-scraper,muhammadafzal/ebay-scraper,muhammadafzal/google-shopping-scraper,muhammadafzal/shopify-store-scraper,muhammadafzal/tiktok-shop-product-scraper,muhammadafzal/lazada-products-scraper,muhammadafzal/mercadolibre-product-seller-scraper,muhammadafzal/aliexpress-products-reviews-sellers,muhammadafzal/alibaba-products-suppliers-scraper"
 ```
 
 ```bash
@@ -179,7 +181,7 @@ For the `/product-research`, `/price-check`, `/store-audit` commands and the pri
 Any MCP client can use the Actors directly by adding this URL as a remote (streamable HTTP) server with OAuth:
 
 ```
-https://mcp.apify.com/?tools=muhammadafzal/amazon-product-offers-bestsellers-scraper,muhammadafzal/walmart-price-checker-scraper,muhammadafzal/target-price-checker-scraper,muhammadafzal/ebay-scraper,muhammadafzal/google-shopping-scraper,muhammadafzal/shopify-store-scraper,muhammadafzal/tiktok-shop-product-scraper,muhammadafzal/lazada-products-scraper,muhammadafzal/aliexpress-products-reviews-sellers,muhammadafzal/alibaba-products-suppliers-scraper
+https://mcp.apify.com/?tools=muhammadafzal/amazon-product-offers-bestsellers-scraper,muhammadafzal/walmart-price-checker-scraper,muhammadafzal/target-price-checker-scraper,muhammadafzal/ebay-scraper,muhammadafzal/google-shopping-scraper,muhammadafzal/shopify-store-scraper,muhammadafzal/tiktok-shop-product-scraper,muhammadafzal/lazada-products-scraper,muhammadafzal/mercadolibre-product-seller-scraper,muhammadafzal/aliexpress-products-reviews-sellers,muhammadafzal/alibaba-products-suppliers-scraper
 ```
 
 ## Pricing
@@ -196,6 +198,7 @@ The plugin itself is free. Each row is billed by Apify on your account at the Ac
 | Shopify store | USD 0.005 per product (USD 0.01 per contact or app-list row) | USD 0.006 | 100 products with apps: about USD 0.52 |
 | TikTok Shop | USD 0.01 | USD 0.01 | 20 products: about USD 0.21 |
 | Lazada | USD 0.0027 | USD 0.005 | 20 products: about USD 0.059 |
+| MercadoLibre | USD 0.025 | USD 0.083 | 10 products: about USD 0.33 |
 | AliExpress | USD 0.004 per product, review or seller row | USD 0.005 | 20 products: about USD 0.085 |
 | Alibaba | USD 0.0025 (USD 0.0045 from a product page) | USD 0.005 | 20 products: about USD 0.055 |
 
@@ -221,7 +224,9 @@ A typical single-product price check across Amazon (with all offers), Walmart, T
 
 **Is the margin estimate reliable?** It is a gross margin before freight, duties, marketplace fees, returns and advertising. Give Claude those figures and it computes a landed cost and net margin; otherwise treat it as a first filter.
 
-**Is this an official Amazon, Walmart, Target, eBay, Google, Shopify, TikTok, Lazada, AliExpress or Alibaba tool?** No. This plugin and the Actors are independent and not affiliated with any of these companies or with Apify.
+**Why is MercadoLibre slower than the others?** It opens every product page to read the current price, stock and seller, about a minute or more per product. Claude keeps MercadoLibre runs to about 10 products, gives them enough time, and runs the other marketplaces meanwhile.
+
+**Is this an official Amazon, Walmart, Target, eBay, Google, Shopify, TikTok, Lazada, MercadoLibre, AliExpress or Alibaba tool?** No. This plugin and the Actors are independent and not affiliated with any of these companies or with Apify.
 
 ## Skills and commands in this plugin
 
@@ -239,4 +244,4 @@ Codex and Hermes Agent load the skills and the ecommerce-research server only; t
 
 Source: https://github.com/afzalbuilds/ecommerce-product-research. Issues and feature requests: https://github.com/afzalbuilds/ecommerce-product-research/issues. The Actors are published on Apify Store by Imzlab Technologies under the `muhammadafzal` account.
 
-Last verified: 2026-11-25. All ten Actors were run live with small inputs on that date, in every mode the skills use; the output fields in the skills' reference files come from those runs.
+Last verified: 2026-11-25. All eleven Actors were run live with small inputs on that date, in every mode the skills use (MercadoLibre on its build 1.0.28, which reads the current price rather than the crossed-out one); the output fields in the skills' reference files come from those runs.

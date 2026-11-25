@@ -2,22 +2,22 @@
 
 Every marketplace names its fields differently. Normalize rows to these columns before comparing, merging or exporting.
 
-| Column | Amazon | Walmart | Target | eBay | Google Shopping | Shopify | TikTok Shop | Lazada | AliExpress | Alibaba |
-|---|---|---|---|---|---|---|---|---|---|---|
-| marketplace | `amazon.<marketplace>` | `site` | `target.com` | `ebay.com` | `google shopping: <source>` | store domain | `tiktok shop` | `storefront` | `aliexpress` | `alibaba` |
-| id | `asin` | `itemId` | `tcin` | `itemId` | `productId` | `product_id` | `productId` | `productId` | `productId` | `productId` |
-| title | `title` | `title` | `title` | `title` | `title` | `title` | `title` | `title` | `title` | `title` |
-| brand | `brand` | `brand` | `brand` | from title | from title | `brand` | from title | `brandName` | from title | from title |
-| price | `price` | `price` | `price` | `price` | `priceValue` | `current_price` | `price` | `price` | `price` | `priceMin` (and `priceMax`) |
-| was_price | `listPrice` | `wasPrice` | `regularPrice` | none | `oldPriceValue` | `original_price` | `originalPrice` | `originalPrice` | `originalPrice` | none |
-| currency | `currency` | `currency` | `currency` | `currency` | `currency` | store currency | `currency` | `currency` | `currency` | `currency` |
-| rating | `rating` | `rating` | `rating` | `productRating` | `rating` | `rating` | `rating` | `rating` | `rating` | `supplierRating` (supplier) |
-| reviews | `reviewsCount` | `reviewCount` | `reviewCount` | `productRatingCount` | `ratingCount` | `review_count` | `reviewCount` | `reviewCount` | `reviewCount` | `supplierReviewCount` |
-| sales_signal | `salesVolume`, best-seller rank | none | `badges` | `soldCount` | none | `estimated_monthly_sales` (estimate) | `soldCount` | `soldCount` | `soldCountText` | `soldCount`, `minOrderQuantity` |
-| seller | `sellerName` | `sellerName` | Target | `seller` | `source` | store | `sellerName` | `sellerName` | `sellerName` | `supplierName` |
-| availability | `inStock`, `shippingInformation` | `availabilityStatus`, `fulfillmentText` | `shippingMessage`, `pickupMessage` | `shippingCost`, `itemLocation` | `delivery` | `available` | `stock` | `inStock` | none | `leadTimes` |
-| url | `url` | `url` | `url` | `itemUrl` | `productUrl` | `product_url` | `url` | `url` | `productUrl` | `url` |
-| upc_or_model | product rows: `productDetails` | `upc`, `model` | `upc` | from title | none | variant SKU | none | none | none | none |
+| Column | Amazon | Walmart | Target | eBay | Google Shopping | Shopify | TikTok Shop | Lazada | AliExpress | Alibaba | MercadoLibre |
+|---|---|---|---|---|---|---|---|---|---|---|---|
+| marketplace | `amazon.<marketplace>` | `site` | `target.com` | `ebay.com` | `google shopping: <source>` | store domain | `tiktok shop` | `storefront` | `aliexpress` | `alibaba` | `mercadolibre.<domain>` |
+| id | `asin` | `itemId` | `tcin` | `itemId` | `productId` | `product_id` | `productId` | `productId` | `productId` | `productId` | `productId` |
+| title | `title` | `title` | `title` | `title` | `title` | `title` | `title` | `title` | `title` | `title` | `title` |
+| brand | `brand` | `brand` | `brand` | from title | from title | `brand` | from title | `brandName` | from title | from title | `attributes.Marca` or title |
+| price | `price` | `price` | `price` | `price` | `priceValue` | `current_price` | `price` | `price` | `price` | `priceMin` (and `priceMax`) | `priceAmount` |
+| was_price | `listPrice` | `wasPrice` | `regularPrice` | none | `oldPriceValue` | `original_price` | `originalPrice` | `originalPrice` | `originalPrice` | none | none |
+| currency | `currency` | `currency` | `currency` | `currency` | `currency` | store currency | `currency` | `currency` | `currency` | `currency` | `currency` |
+| rating | `rating` | `rating` | `rating` | `productRating` | `rating` | `rating` | `rating` | `rating` | `rating` | `supplierRating` (supplier) | none |
+| reviews | `reviewsCount` | `reviewCount` | `reviewCount` | `productRatingCount` | `ratingCount` | `review_count` | `reviewCount` | `reviewCount` | `reviewCount` | `supplierReviewCount` | none |
+| sales_signal | `salesVolume`, best-seller rank | none | `badges` | `soldCount` | none | `estimated_monthly_sales` (estimate) | `soldCount` | `soldCount` | `soldCountText` | `soldCount`, `minOrderQuantity` | `seller.salesText` (seller total) |
+| seller | `sellerName` | `sellerName` | Target | `seller` | `source` | store | `sellerName` | `sellerName` | `sellerName` | `supplierName` | `seller.name` |
+| availability | `inStock`, `shippingInformation` | `availabilityStatus`, `fulfillmentText` | `shippingMessage`, `pickupMessage` | `shippingCost`, `itemLocation` | `delivery` | `available` | `stock` | `inStock` | none | `leadTimes` | `availableQuantity` |
+| url | `url` | `url` | `url` | `itemUrl` | `productUrl` | `product_url` | `url` | `url` | `productUrl` | `url` | `productUrl` |
+| upc_or_model | product rows: `productDetails` | `upc`, `model` | `upc` | from title | none | variant SKU | none | none | none | none | `attributes.Modelo` |
 
 Leave a cell empty when the source has no value; never fill it from another row.
 

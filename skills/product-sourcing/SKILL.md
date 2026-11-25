@@ -16,7 +16,7 @@ The input and output of each Actor are in `../product-research/references/actor-
 2. **Plan the runs:**
    - Alibaba: `searchQueries` with specific buyer wording (specs beat pages), `maxPages: 1`, `maxResults` 20. For the 3 to 5 most promising suppliers, a second run with their `productUrls` for price tiers, lead times and certifications (product-page fee applies; about a minute each).
    - AliExpress: `searchQueries`, `maxProducts` 20, `includeReviews: false`, `includeSellers: false`, `currency` and `shipToCountry` for the user's market.
-   - Retail benchmark: Amazon `mode: "search"` and Google Shopping, 20 each, in the user's market.
+   - Retail benchmark: Amazon `mode: "search"` and Google Shopping, 20 each, in the user's market; for a Latin American market, MercadoLibre with up to 10 products (slow, see the contract).
 
 3. **Estimate the cost** with the price table (default plan about USD 0.30; the Alibaba product-page run adds USD 0.005 plus USD 0.0045 per page). If the estimate is USD 0.50 or less, run now and report the cost afterwards; above it, run only after the user agrees.
 

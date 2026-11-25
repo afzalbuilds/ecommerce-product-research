@@ -11,4 +11,4 @@ dependencies:
       value: "ecommerce-research"
       description: "Apify's hosted MCP server limited to Imzlab Technologies' Actors (sign in with Apify)"
       transport: "streamable_http"
-      url: "https://mcp.apify.com/?tools=muhammadafzal/amazon-product-offers-bestsellers-scraper,muhammadafzal/walmart-price-checker-scraper,muhammadafzal/target-price-checker-scraper,muhammadafzal/ebay-scraper,muhammadafzal/google-shopping-scraper,muhammadafzal/shopify-store-scraper,muhammadafzal/tiktok-shop-product-scraper,muhammadafzal/lazada-products-scraper,muhammadafzal/aliexpress-products-reviews-sellers,muhammadafzal/alibaba-products-suppliers-scraper"
+      url: "https://mcp.apify.com/?tools=muhammadafzal/amazon-product-offers-bestsellers-scraper,muhammadafzal/walmart-price-checker-scraper,muhammadafzal/target-price-checker-scraper,muhammadafzal/ebay-scraper,muhammadafzal/google-shopping-scraper,muhammadafzal/shopify-store-scraper,muhammadafzal/tiktok-shop-product-scraper,muhammadafzal/lazada-products-scraper,muhammadafzal/mercadolibre-product-seller-scraper,muhammadafzal/aliexpress-products-reviews-sellers,muhammadafzal/alibaba-products-suppliers-scraper"

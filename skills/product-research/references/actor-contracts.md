@@ -223,6 +223,29 @@ Key-value record `OUTPUT`: `status`, `delivered`, `country`, `inputCounts`, `inp
 
 ---
 
+## MercadoLibre (Latin America): `mercadolibre-product-seller-scraper`
+
+Price: USD 0.025 per product, start USD 0.083 (512 MB, one event). `maxResults` 1 to 200 per run; **free Apify plans get at most 20 products per run**. Slow: every product page is rendered, about 60 to 100 seconds each, a few at a time. The run stops 20 seconds before its timeout (default 300 seconds), so always set `callOptions.timeout` to about 90 × products + 120 seconds (at most 3,600) and keep runs to 10 products or fewer unless the user accepts a long wait. Live on build 1.0.28 (2026-11-25), which reads the current price, not the crossed-out one.
+
+Input:
+```json
+{
+  "startUrls": ["https://listado.mercadolibre.com.mx/cafetera-espresso"],
+  "maxResults": 10,
+  "maxPages": 1,
+  "includeSellerDetails": true
+}
+```
+- `startUrls` is required: search pages or product pages. Build a search URL as `https://listado.mercadolibre.<domain>/<keywords-joined-with-hyphens>`, for example `listado.mercadolibre.com.mx/cafetera-espresso`, `listado.mercadolibre.com.ar/iphone-17`, `listado.mercadolibre.cl/zapatillas-running`. Domains: `com.mx` (Mexico), `com.ar` (Argentina), `com.co` (Colombia), `cl` (Chile), `com.pe` (Peru), `com.uy` (Uruguay), `com.ec` (Ecuador), `co.cr` (Costa Rica) and the other `mercadolibre.com.<cc>` sites. Brazil (mercadolivre.com.br) is not accepted.
+- Product pages: `…/p/MLA1055308917` catalog links or `…/MLM-123456789-title` item links. Search terms are best in the country's language (Spanish).
+- `maxPages` 1 to 10 search pages (about 48 products each); a further page opens only when earlier pages did not fill `maxResults`.
+
+Dataset row (camelCase): `productId` (for example `MLM2883102053`), `title`, `priceAmount` (the current price, in `currency`), `currency` (`MXN`, `ARS`, `COP`, `CLP`, `PEN`, `UYU`, `USD` for dollar listings, and others), `condition` (`Nuevo`, `Usado`, `Reacondicionado`), `availableQuantity` (a listing that says "+50 disponibles" gives 50, meaning 50 or more), `description`, `imageUrls[]`, `attributes` (object of the listing's specification table, for example `Marca`, `Modelo`), `seller` (`{name, profileUrl, reputation, salesText}`; `reputation` such as `MercadoLíder Platinum`, `salesText` such as `+10 mil ventas` is the seller's total, not this product's), `productUrl`, `sourceSearchUrl`, `scrapedAt`, `detailsFetched`, `warnings[]`. No rating or review count.
+
+Key-value record `RUN_SUMMARY`: `outcome` (`data` | `empty` | `rejected` | other), `recordsDelivered`, `customResultEventsCharged`, `chargeLimitReached`, `freePlanLimitApplied`, `stopReason` (for example `maxResults (10) reached`, or `run time limit reached with N page(s) not opened; raise the run timeout for more products`), `blockedUrls[]`, `warnings[]`. When the stop reason is the run time limit, report the products delivered and offer a re-run with a longer `callOptions.timeout`.
+
+---
+
 ## AliExpress: `aliexpress-products-reviews-sellers`
 
 Price: USD 0.004 per record (product, review or seller rows are each one record), start USD 0.005 (512 MB, one event). `maxProducts` 1 to 500 unique products. About 5 to 10 seconds for 10 products.
@@ -278,6 +301,6 @@ Key-value record `OUTPUT`: `status`, `delivered`, `resultEvents`, `productFeeEve
 
 cost = runs × start fee + charged rows × per-row price (+ product-page or record-type fees where listed).
 
-Examples on the FREE tier: 20 Amazon search results ≈ USD 0.055; offers for 5 ASINs at 10 offers each ≈ USD 0.13; 20 Walmart results ≈ USD 0.055; 20 Target search results ≈ USD 0.035, 5 Target product pages ≈ USD 0.0275; 20 eBay listings ≈ USD 0.206; 20 Google Shopping products ≈ USD 0.106; a Shopify store audit of 100 products with tech stack ≈ USD 0.516; 20 TikTok Shop products ≈ USD 0.21; 20 Lazada products ≈ USD 0.059; 20 AliExpress products ≈ USD 0.085; 20 Alibaba products from search ≈ USD 0.055.
+Examples on the FREE tier: 20 Amazon search results ≈ USD 0.055; offers for 5 ASINs at 10 offers each ≈ USD 0.13; 20 Walmart results ≈ USD 0.055; 20 Target search results ≈ USD 0.035, 5 Target product pages ≈ USD 0.0275; 20 eBay listings ≈ USD 0.206; 20 Google Shopping products ≈ USD 0.106; a Shopify store audit of 100 products with tech stack ≈ USD 0.516; 20 TikTok Shop products ≈ USD 0.21; 20 Lazada products ≈ USD 0.059; 10 MercadoLibre products ≈ USD 0.333; 20 AliExpress products ≈ USD 0.085; 20 Alibaba products from search ≈ USD 0.055.
 
 Quote costs as "about": searches often return fewer rows than requested, and the user's Apify plan tier may be discounted.

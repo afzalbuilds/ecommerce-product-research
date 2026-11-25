@@ -1,7 +1,7 @@
 {
   "name": "ecommerce-product-research",
-  "version": "1.0.0",
-  "description": "Research products and prices from your AI agent across Amazon, Walmart, Target, eBay, Google Shopping, TikTok Shop, Lazada and any Shopify store, and find suppliers on AliExpress and Alibaba. Compare one product's price everywhere, check Amazon sellers and Best Sellers, audit a competitor store's catalog, discounts and apps, and estimate sourcing margins. Pay per result on your Apify account.",
+  "version": "1.1.0",
+  "description": "Research products and prices from your AI agent across Amazon, Walmart, Target, eBay, Google Shopping, TikTok Shop, Lazada, MercadoLibre and any Shopify store, and find suppliers on AliExpress and Alibaba. Compare one product's price everywhere, check Amazon sellers and Best Sellers, audit a competitor store's catalog, discounts and apps, and estimate sourcing margins. Pay per result on your Apify account.",
   "author": {
     "name": "Imzlab Technologies",
     "email": "info@imzlab.com",
@@ -24,6 +24,7 @@
     "shopify",
     "tiktok shop",
     "lazada",
+    "mercadolibre",
     "aliexpress",
     "alibaba",
     "product sourcing",
@@ -35,7 +36,7 @@
   "interface": {
     "displayName": "E-commerce Product Research",
     "shortDescription": "Products, prices and suppliers",
-    "longDescription": "Research products and prices from your AI agent across Amazon, Walmart, Target, eBay, Google Shopping, TikTok Shop, Lazada and any Shopify store, and find suppliers on AliExpress and Alibaba. Compare one product's price everywhere, check Amazon sellers and Best Sellers, audit a competitor store's catalog, discounts and apps, and estimate sourcing margins. Pay per result on your Apify account. Includes 5 skills (competitor-store-audit, ecommerce-cost-estimate, price-check, product-research, product-sourcing) and Apify's hosted MCP server limited to Imzlab's Actors. After installing, run `codex mcp login ecommerce-research` to sign in to Apify in the browser.",
+    "longDescription": "Research products and prices from your AI agent across Amazon, Walmart, Target, eBay, Google Shopping, TikTok Shop, Lazada, MercadoLibre and any Shopify store, and find suppliers on AliExpress and Alibaba. Compare one product's price everywhere, check Amazon sellers and Best Sellers, audit a competitor store's catalog, discounts and apps, and estimate sourcing margins. Pay per result on your Apify account. Includes 5 skills (competitor-store-audit, ecommerce-cost-estimate, price-check, product-research, product-sourcing) and Apify's hosted MCP server limited to Imzlab's Actors. After installing, run `codex mcp login ecommerce-research` to sign in to Apify in the browser.",
     "developerName": "Imzlab Technologies",
     "category": "Business & Operations",
     "capabilities": [

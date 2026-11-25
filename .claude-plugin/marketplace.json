@@ -9,7 +9,7 @@
     {
       "name": "ecommerce-product-research",
       "source": "./",
-      "description": "E-commerce Product & Price Research: Amazon, Walmart, Target, eBay, Google Shopping, TikTok Shop, Lazada, Shopify stores, AliExpress and Alibaba inside Claude. Price checks, competitor store audits, product sourcing. Pay per result on Apify.",
+      "description": "E-commerce Product & Price Research: Amazon, Walmart, Target, eBay, Google Shopping, TikTok Shop, Lazada, MercadoLibre, Shopify stores, AliExpress and Alibaba inside Claude. Price checks, competitor store audits, product sourcing. Pay per result on Apify.",
       "category": "productivity",
       "tags": [
         "ecommerce",
