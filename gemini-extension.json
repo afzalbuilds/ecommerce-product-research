@@ -1,0 +1,15 @@
+{
+  "name": "ecommerce-product-research",
+  "version": "1.0.0",
+  "description": "Research products and prices from your AI agent across Amazon, Walmart, Target, eBay, Google Shopping, TikTok Shop, Lazada and any Shopify store, and find suppliers on AliExpress and Alibaba. Compare one product's price everywhere, check Amazon sellers and Best Sellers, audit a competitor store's catalog, discounts and apps, and estimate sourcing margins. Pay per result on your Apify account.",
+  "contextFileName": "GEMINI.md",
+  "mcpServers": {
+    "ecommerce-research": {
+      "url": "https://mcp.apify.com/?tools=muhammadafzal/amazon-product-offers-bestsellers-scraper,muhammadafzal/walmart-price-checker-scraper,muhammadafzal/target-price-checker-scraper,muhammadafzal/ebay-scraper,muhammadafzal/google-shopping-scraper,muhammadafzal/shopify-store-scraper,muhammadafzal/tiktok-shop-product-scraper,muhammadafzal/lazada-products-scraper,muhammadafzal/aliexpress-products-reviews-sellers,muhammadafzal/alibaba-products-suppliers-scraper",
+      "type": "http",
+      "oauth": {
+        "enabled": true
+      }
+    }
+  }
+}

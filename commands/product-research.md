@@ -1,0 +1,8 @@
+---
+description: Research products for a keyword or category across Amazon, Walmart, Target, eBay, Google Shopping, TikTok Shop and Lazada
+argument-hint: <keyword or Amazon Best Sellers link> [marketplaces] [country] [count]
+---
+
+Research products using the `product-research` skill from this plugin for: $ARGUMENTS
+
+Work out the keyword or category, the marketplaces (Amazon, Walmart and Google Shopping for the US unless named), the country and the count per marketplace (default 20), estimate the cost and ask first when it is above USD 0.50, run the Actors through the ecommerce-research MCP server, wait for every run to finish, read the dataset and the summary record, normalize the rows, and present the per-marketplace line, one product table, the observations and the Apify cost line. If no keyword or category was given, ask for one.

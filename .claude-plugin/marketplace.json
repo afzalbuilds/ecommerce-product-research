@@ -1,0 +1,26 @@
+{
+  "name": "imzlab-ecommerce-research",
+  "owner": {
+    "name": "Imzlab Technologies",
+    "email": "info@imzlab.com"
+  },
+  "description": "Imzlab Technologies plugins for Claude: e-commerce product and price research.",
+  "plugins": [
+    {
+      "name": "ecommerce-product-research",
+      "source": "./",
+      "description": "E-commerce Product & Price Research: Amazon, Walmart, Target, eBay, Google Shopping, TikTok Shop, Lazada, Shopify stores, AliExpress and Alibaba inside Claude. Price checks, competitor store audits, product sourcing. Pay per result on Apify.",
+      "category": "productivity",
+      "tags": [
+        "ecommerce",
+        "product research",
+        "price comparison",
+        "amazon",
+        "shopify",
+        "sourcing",
+        "competitor analysis",
+        "marketplaces"
+      ]
+    }
+  ]
+}

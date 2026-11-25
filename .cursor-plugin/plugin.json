@@ -1,0 +1,33 @@
+{
+  "name": "ecommerce-product-research",
+  "version": "1.0.0",
+  "description": "Research products and prices from your AI agent across Amazon, Walmart, Target, eBay, Google Shopping, TikTok Shop, Lazada and any Shopify store, and find suppliers on AliExpress and Alibaba. Compare one product's price everywhere, check Amazon sellers and Best Sellers, audit a competitor store's catalog, discounts and apps, and estimate sourcing margins. Pay per result on your Apify account.",
+  "author": {
+    "name": "Imzlab Technologies",
+    "email": "info@imzlab.com"
+  },
+  "homepage": "https://github.com/afzalbuilds/ecommerce-product-research#readme",
+  "repository": "https://github.com/afzalbuilds/ecommerce-product-research",
+  "license": "MIT",
+  "keywords": [
+    "ecommerce",
+    "product research",
+    "price comparison",
+    "price monitoring",
+    "amazon",
+    "amazon best sellers",
+    "walmart",
+    "target",
+    "ebay",
+    "google shopping",
+    "shopify",
+    "tiktok shop",
+    "lazada",
+    "aliexpress",
+    "alibaba",
+    "product sourcing",
+    "competitor analysis",
+    "apify"
+  ],
+  "logo": "assets/icon.png"
+}
